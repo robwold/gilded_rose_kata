@@ -1,5 +1,11 @@
 # The Gilded Rose Code Kata
+This is a fork of Jim Weirich's Ruby port of the Gilded Rose Kata. His readme can be found below. 
 
+I've created a `with-minitest` branch that's set up to use Minitest instead of RSpec, and has `simplecov` set up.
+It contains a single, poor test as a demonstration- one of our purposes for doing this will be writing a test 
+suite for a legacy codebase, so this should be used as a starting point.
+
+#Jim Weirich's Readme
 This is a Ruby version of the Gilded Rose Kata, found
 [here](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
 
