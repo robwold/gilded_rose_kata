@@ -4,7 +4,7 @@ SimpleCov.start
 require 'minitest/autorun'
 require_relative './gilded_rose'
 
-class GildedRoseTest < MiniTest:Test
+class GildedRoseTest < MiniTest::Test
   # This is not a good test, but checks our basic setup
   def test_update_quality
     item = Item.new("+5 Dexterity Vest", 10, 20)
