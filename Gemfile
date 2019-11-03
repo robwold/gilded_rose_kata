@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
-gem 'rspec'
-gem 'rspec-given'
+gem 'simplecov', require: false, group: :test
+gem 'minitest', group: :test
