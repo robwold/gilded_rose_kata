@@ -5,7 +5,7 @@ I've created a `with-minitest` branch that's set up to use Minitest instead of R
 It contains a single, poor test as a demonstration- one of our purposes for doing this will be writing a test 
 suite for a legacy codebase, so this should be used as a starting point.
 
-#Jim Weirich's Readme
+# Jim Weirich's Readme
 This is a Ruby version of the Gilded Rose Kata, found
 [here](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
 
