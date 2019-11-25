@@ -12,13 +12,15 @@ def update_item_quality(item)
     return
   end
 
-  if item.name != 'Aged Brie'
-    if item.name != 'Sulfuras, Hand of Ragnaros'
-      decrement_quality(item)
-    end
-  else
+  if item.name == 'Aged Brie'
     increment_quality(item)
+    return
   end
+
+  if item.name != 'Sulfuras, Hand of Ragnaros'
+    decrement_quality(item)
+  end
+
 end
 
 def update_sell_in(item)
