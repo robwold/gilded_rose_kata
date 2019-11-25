@@ -46,7 +46,7 @@ def handle_expiry(item)
       decrement_quality(item)
     end
   else
-    item.quality = item.quality - item.quality
+    item.quality = 0
   end
 
 end
