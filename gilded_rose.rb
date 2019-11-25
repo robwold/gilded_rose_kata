@@ -17,10 +17,9 @@ def update_item_quality(item)
     return
   end
 
-  if item.name != 'Sulfuras, Hand of Ragnaros'
-    decrement_quality(item)
-  end
+  return if item.name == 'Sulfuras, Hand of Ragnaros'
 
+  decrement_quality(item)
 end
 
 def update_sell_in(item)
