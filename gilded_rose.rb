@@ -1,3 +1,9 @@
+def increment_quality(item)
+  if item.quality < 50
+    item.quality += 1
+  end
+end
+
 def update_item_quality(item)
   if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
     if item.quality > 0
@@ -10,14 +16,10 @@ def update_item_quality(item)
       item.quality += 1
       if item.name == 'Backstage passes to a TAFKAL80ETC concert'
         if item.sell_in < 11
-          if item.quality < 50
-            item.quality += 1
-          end
+          increment_quality(item)
         end
         if item.sell_in < 6
-          if item.quality < 50
-            item.quality += 1
-          end
+          increment_quality(item)
         end
       end
     end
@@ -42,9 +44,7 @@ def handle_expiry(item)
       item.quality = item.quality - item.quality
     end
   else
-    if item.quality < 50
-      item.quality += 1
-    end
+    increment_quality(item)
   end
 end
 
