@@ -1,61 +1,70 @@
-def increment_quality(item)
-  if item.quality < 50
-    item.quality += 1
-  end
-end
+class ItemUpdater
 
-def update_item_quality(item)
-  if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-    increment_quality(item)
-    increment_quality(item) if item.sell_in < 11
-    increment_quality(item) if item.sell_in < 6
-    return
-  end
-
-  if item.name == 'Aged Brie'
-    increment_quality(item)
-    return
-  end
-
-  return if item.name == 'Sulfuras, Hand of Ragnaros'
-
-  decrement_quality(item)
-end
-
-def update_sell_in(item)
-  if item.name != 'Sulfuras, Hand of Ragnaros'
-    item.sell_in -= 1
-  end
-end
-
-def decrement_quality(item)
-  if item.quality > 0
-    item.quality -= 1
-  end
-end
-
-def handle_expiry(item)
-  if item.name == "Aged Brie"
-    increment_quality(item) && return
-  end
-
-  if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-    item.quality = 0
-    return
-  end
-
-  return if item.name == 'Sulfuras, Hand of Ragnaros'
-
-  decrement_quality(item)
-end
-
-def update_quality(items)
-  items.each do |item|
+  def update_item(item)
     update_item_quality(item)
     update_sell_in(item)
     if item.sell_in < 0
       handle_expiry(item)
     end
+  end
+
+  private
+  def increment_quality(item)
+    if item.quality < 50
+      item.quality += 1
+    end
+  end
+
+  def update_item_quality(item)
+    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      increment_quality(item)
+      increment_quality(item) if item.sell_in < 11
+      increment_quality(item) if item.sell_in < 6
+      return
+    end
+
+    if item.name == 'Aged Brie'
+      increment_quality(item)
+      return
+    end
+
+    return if item.name == 'Sulfuras, Hand of Ragnaros'
+
+    decrement_quality(item)
+  end
+
+  def update_sell_in(item)
+    if item.name != 'Sulfuras, Hand of Ragnaros'
+      item.sell_in -= 1
+    end
+  end
+
+  def decrement_quality(item)
+    if item.quality > 0
+      item.quality -= 1
+    end
+  end
+
+  def handle_expiry(item)
+    if item.name == "Aged Brie"
+      increment_quality(item) && return
+    end
+
+    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      item.quality = 0
+      return
+    end
+
+    return if item.name == 'Sulfuras, Hand of Ragnaros'
+
+    decrement_quality(item)
+  end
+end
+
+def update_quality(items)
+  items.each do |item|
+    updater = ItemUpdater.new
+    updater.update_item(item)
   end
 end
 
