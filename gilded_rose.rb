@@ -5,20 +5,23 @@ def increment_quality(item)
 end
 
 def update_item_quality(item)
-  if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
+  if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+    increment_quality(item)
+    if item.sell_in < 11
+      increment_quality(item)
+    end
+    if item.sell_in < 6
+      increment_quality(item)
+    end
+    return
+  end
+
+  if item.name != 'Aged Brie'
     if item.name != 'Sulfuras, Hand of Ragnaros'
       decrement_quality(item)
     end
   else
     increment_quality(item)
-    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-      if item.sell_in < 11
-        increment_quality(item)
-      end
-      if item.sell_in < 6
-        increment_quality(item)
-      end
-    end
   end
 end
 
