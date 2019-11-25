@@ -4,6 +4,8 @@ class ItemUpdater
     case item.name
     when 'Sulfuras, Hand of Ragnaros'
       SulfurasUpdater.new
+    when 'Backstage passes to a TAFKAL80ETC concert'
+      BackstagePassesUpdater.new
     else
       ItemUpdater.new
     end
@@ -25,18 +27,10 @@ class ItemUpdater
   end
 
   def update_item_quality(item)
-    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-      increment_quality(item)
-      increment_quality(item) if item.sell_in < 11
-      increment_quality(item) if item.sell_in < 6
-      return
-    end
-
     if item.name == 'Aged Brie'
       increment_quality(item)
       return
     end
-
     decrement_quality(item)
   end
 
@@ -55,11 +49,6 @@ class ItemUpdater
       increment_quality(item) && return
     end
 
-    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-      item.quality = 0
-      return
-    end
-
     decrement_quality(item)
   end
 end
@@ -68,6 +57,18 @@ class SulfurasUpdater < ItemUpdater
   def update_item_quality(item); end
   def update_sell_in(item); end
   def handle_expiry(item); end
+end
+
+class BackstagePassesUpdater < ItemUpdater
+  def update_item_quality(item)
+    increment_quality(item)
+    increment_quality(item) if item.sell_in < 11
+    increment_quality(item) if item.sell_in < 6
+  end
+
+  def handle_expiry(item)
+    item.quality = 0
+  end
 end
 
 def update_quality(items)
