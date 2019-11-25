@@ -97,16 +97,19 @@ class GildedRoseTest < MiniTest::Test
   end
 
   def test_conjured_item_degrades_twice_as_fast
+    skip
     conjured_cake = make_and_update(name: "Conjured Mana Cake", sell_in: 3, quality: 6)
     assert_equal 4, conjured_cake.quality
   end
 
   def test_expired_conjured_item_degrades_twice_as_fast
+    skip
     conjured_cake = make_and_update(name: "Conjured Mana Cake", sell_in: 0, quality: 6)
     assert_equal 2, conjured_cake.quality
   end
 
   def test_conjured_item_quality_is_never_negative
+    skip
     conjured_cake = make_and_update(name: "Conjured Mana Cake", sell_in: 0, quality: 3)
     assert_equal 0, conjured_cake.quality
   end
