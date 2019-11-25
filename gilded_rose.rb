@@ -1,6 +1,7 @@
 class ItemUpdater
 
   def self.updater_for(item)
+    return SulfurasUpdater.new if item.name == 'Sulfuras, Hand of Ragnaros'
     ItemUpdater.new
   end
 
@@ -32,15 +33,11 @@ class ItemUpdater
       return
     end
 
-    return if item.name == 'Sulfuras, Hand of Ragnaros'
-
     decrement_quality(item)
   end
 
   def update_sell_in(item)
-    if item.name != 'Sulfuras, Hand of Ragnaros'
-      item.sell_in -= 1
-    end
+    item.sell_in -= 1
   end
 
   def decrement_quality(item)
@@ -59,10 +56,14 @@ class ItemUpdater
       return
     end
 
-    return if item.name == 'Sulfuras, Hand of Ragnaros'
-
     decrement_quality(item)
   end
+end
+
+class SulfurasUpdater < ItemUpdater
+  def update_item_quality(item); end
+  def update_sell_in(item); end
+  def handle_expiry(item); end
 end
 
 def update_quality(items)
