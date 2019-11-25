@@ -10,9 +10,7 @@ def update_item_quality(item)
       decrement_quality(item)
     end
   else
-    if item.quality < 50
-      item.quality += 1
-    end
+    increment_quality(item)
     if item.name == 'Backstage passes to a TAFKAL80ETC concert'
       if item.sell_in < 11
         increment_quality(item)
