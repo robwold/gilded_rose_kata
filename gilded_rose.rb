@@ -37,17 +37,18 @@ def decrement_quality(item)
 end
 
 def handle_expiry(item)
-  if item.name != "Aged Brie"
-    if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-      if item.name != 'Sulfuras, Hand of Ragnaros'
-        decrement_quality(item)
-      end
-    else
-      item.quality = item.quality - item.quality
+  if item.name == "Aged Brie"
+    increment_quality(item) && return
+  end
+
+  if item.name != 'Backstage passes to a TAFKAL80ETC concert'
+    if item.name != 'Sulfuras, Hand of Ragnaros'
+      decrement_quality(item)
     end
   else
-    increment_quality(item)
+    item.quality = item.quality - item.quality
   end
+
 end
 
 def update_quality(items)
