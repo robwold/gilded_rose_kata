@@ -6,6 +6,8 @@ class ItemUpdater
       SulfurasUpdater.new
     when 'Backstage passes to a TAFKAL80ETC concert'
       BackstagePassesUpdater.new
+    when 'Aged Brie'
+      AgedBrieUpdater.new
     else
       ItemUpdater.new
     end
@@ -27,10 +29,6 @@ class ItemUpdater
   end
 
   def update_item_quality(item)
-    if item.name == 'Aged Brie'
-      increment_quality(item)
-      return
-    end
     decrement_quality(item)
   end
 
@@ -45,10 +43,6 @@ class ItemUpdater
   end
 
   def handle_expiry(item)
-    if item.name == "Aged Brie"
-      increment_quality(item) && return
-    end
-
     decrement_quality(item)
   end
 end
@@ -68,6 +62,16 @@ class BackstagePassesUpdater < ItemUpdater
 
   def handle_expiry(item)
     item.quality = 0
+  end
+end
+
+class AgedBrieUpdater < ItemUpdater
+  def update_item_quality(item)
+    increment_quality(item)
+  end
+
+  def handle_expiry(item)
+    increment_quality(item)
   end
 end
 
