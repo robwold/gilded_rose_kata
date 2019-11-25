@@ -1,5 +1,9 @@
 class ItemUpdater
 
+  def self.updater_for(item)
+    ItemUpdater.new
+  end
+
   def update_item(item)
     update_item_quality(item)
     update_sell_in(item)
@@ -63,7 +67,7 @@ end
 
 def update_quality(items)
   items.each do |item|
-    updater = ItemUpdater.new
+    updater = ItemUpdater.updater_for(item)
     updater.update_item(item)
   end
 end
