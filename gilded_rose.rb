@@ -7,9 +7,7 @@ end
 def update_item_quality(item)
   if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
     if item.name != 'Sulfuras, Hand of Ragnaros'
-      if item.quality > 0
-        item.quality -= 1
-      end
+      decrement_quality(item)
     end
   else
     if item.quality < 50
@@ -32,13 +30,17 @@ def update_sell_in(item)
   end
 end
 
+def decrement_quality(item)
+  if item.quality > 0
+    item.quality -= 1
+  end
+end
+
 def handle_expiry(item)
   if item.name != "Aged Brie"
     if item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.name != 'Sulfuras, Hand of Ragnaros'
-        if item.quality > 0
-          item.quality -= 1
-        end
+        decrement_quality(item)
       end
     else
       item.quality = item.quality - item.quality
