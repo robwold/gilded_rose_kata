@@ -1,22 +1,25 @@
+MINIMUM_ITEM_QUALITY = 0
+MAXIMUM_ITEM_QUALITY = 50
+
 def update_quality(items)
   items.each do |item|
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
-      if item.quality > 0
+      if item.quality > MINIMUM_ITEM_QUALITY
         if item.name != 'Sulfuras, Hand of Ragnaros'
           item.quality -= 1
         end
       end
     else
-      if item.quality < 50
+      if item.quality < MAXIMUM_ITEM_QUALITY
         item.quality += 1
         if item.name == 'Backstage passes to a TAFKAL80ETC concert'
           if item.sell_in < 11
-            if item.quality < 50
+            if item.quality < MAXIMUM_ITEM_QUALITY
               item.quality += 1
             end
           end
           if item.sell_in < 6
-            if item.quality < 50
+            if item.quality < MAXIMUM_ITEM_QUALITY
               item.quality += 1
             end
           end
@@ -29,7 +32,7 @@ def update_quality(items)
     if item.sell_in < 0
       if item.name != "Aged Brie"
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-          if item.quality > 0
+          if item.quality > MINIMUM_ITEM_QUALITY
             if item.name != 'Sulfuras, Hand of Ragnaros'
               item.quality -= 1
             end
@@ -38,11 +41,18 @@ def update_quality(items)
           item.quality = item.quality - item.quality
         end
       else
-        if item.quality < 50
+        if item.quality < MAXIMUM_ITEM_QUALITY
           item.quality += 1
         end
       end
     end
+  end
+end
+
+
+def quality_more_than_zero(item_name)
+  if item.name != 'Sulfuras, Hand of Ragnaros'
+    item.quality -= 1
   end
 end
 
