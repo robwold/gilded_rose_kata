@@ -12,13 +12,13 @@ def update_item_quality(item)
   else
     if item.quality < 50
       item.quality += 1
-      if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-        if item.sell_in < 11
-          increment_quality(item)
-        end
-        if item.sell_in < 6
-          increment_quality(item)
-        end
+    end
+    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      if item.sell_in < 11
+        increment_quality(item)
+      end
+      if item.sell_in < 6
+        increment_quality(item)
       end
     end
   end
