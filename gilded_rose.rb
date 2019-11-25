@@ -7,12 +7,8 @@ end
 def update_item_quality(item)
   if item.name == 'Backstage passes to a TAFKAL80ETC concert'
     increment_quality(item)
-    if item.sell_in < 11
-      increment_quality(item)
-    end
-    if item.sell_in < 6
-      increment_quality(item)
-    end
+    increment_quality(item) if item.sell_in < 11
+    increment_quality(item) if item.sell_in < 6
     return
   end
 
