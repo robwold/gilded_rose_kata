@@ -10,6 +10,7 @@ SPECIFIC_ITEMS = {
 
 def update_quality(items)
   items.each do |item|
+
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.quality > MINIMUM_ITEM_QUALITY
         if item.name != 'Sulfuras, Hand of Ragnaros'
@@ -58,6 +59,14 @@ def backstage_passes_rules(item)
     if item.quality < MAXIMUM_ITEM_QUALITY
       item.quality += 1
     end
+  end
+end
+
+def decrease_quality(item)
+  if item.sell_in < 0
+    item.quality = item.quality - 2
+  else
+    item.quality = item.quality - 1
   end
 end
 
