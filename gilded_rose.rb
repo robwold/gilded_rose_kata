@@ -2,7 +2,7 @@ MINIMUM_ITEM_QUALITY = 0
 MAXIMUM_ITEM_QUALITY = 50
 
 
-GENERIC_ITEMS = {
+SPECIFIC_ITEMS = {
     :SULFURAS => "Sulfuras, Hand of Ragnaros",
     :BACKSTAGE_PASSES => "Backstage passes to a TAFKAL80ETC concert",
     :AGED_BRIE => "Aged Brie"
@@ -19,7 +19,7 @@ def update_quality(items)
     else
       if item.quality < MAXIMUM_ITEM_QUALITY
         item.quality += 1
-        if item.name == GENERIC_ITEMS[:BACKSTAGE_PASSES]
+        if item.name == SPECIFIC_ITEMS[:BACKSTAGE_PASSES]
           backstage_passes_rules(item)
         end
       end
