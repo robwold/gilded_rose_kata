@@ -1,6 +1,13 @@
 MINIMUM_ITEM_QUALITY = 0
 MAXIMUM_ITEM_QUALITY = 50
 
+
+GENERIC_ITEMS = {
+    :SULFURAS => "Sulfuras, Hand of Ragnaros",
+    :BACKSTAGE_PASSES => "Backstage passes to a TAFKAL80ETC concert",
+    :AGED_BRIE => "Aged Brie"
+}
+
 def update_quality(items)
   items.each do |item|
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
@@ -12,17 +19,8 @@ def update_quality(items)
     else
       if item.quality < MAXIMUM_ITEM_QUALITY
         item.quality += 1
-        if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-          if item.sell_in < 11
-            if item.quality < MAXIMUM_ITEM_QUALITY
-              item.quality += 1
-            end
-          end
-          if item.sell_in < 6
-            if item.quality < MAXIMUM_ITEM_QUALITY
-              item.quality += 1
-            end
-          end
+        if item.name == GENERIC_ITEMS[:BACKSTAGE_PASSES]
+          backstage_passes_rules(item)
         end
       end
     end
@@ -49,12 +47,26 @@ def update_quality(items)
   end
 end
 
-
-def quality_more_than_zero(item_name)
-  if item.name != 'Sulfuras, Hand of Ragnaros'
-    item.quality -= 1
+private
+def backstage_passes_rules(item)
+  if item.sell_in < 11
+    if item.quality < MAXIMUM_ITEM_QUALITY
+      item.quality += 1
+    end
+  end
+  if item.sell_in < 6
+    if item.quality < MAXIMUM_ITEM_QUALITY
+      item.quality += 1
+    end
   end
 end
+
+
+# def quality_more_than_zero(item_name)
+#   if item.name != 'Sulfuras, Hand of Ragnaros'
+#     item.quality -= 1
+#   end
+# end
 
 # DO NOT CHANGE THINGS BELOW -----------------------------------------
 
