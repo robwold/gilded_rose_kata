@@ -1,8 +1,12 @@
 class ItemUpdater
 
   def self.updater_for(item)
-    return SulfurasUpdater.new if item.name == 'Sulfuras, Hand of Ragnaros'
-    ItemUpdater.new
+    case item.name
+    when 'Sulfuras, Hand of Ragnaros'
+      SulfurasUpdater.new
+    else
+      ItemUpdater.new
+    end
   end
 
   def update_item(item)
