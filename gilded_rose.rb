@@ -12,37 +12,35 @@ class GildedRose
 
   def update_quality(items)
     items.each do |item|
-      if item.name != AGED_BRIE && item.name != BACKSTAGE_PASS
-        if item.quality > 0
-          if item.name != SULFURAS
-            item.quality -= 1
-          end
-        end
+      if item.name == SULFURAS
+        sulfuras_rules(item)
       else
-        if item.quality < MAXIMUM_ITEM_QUALITY
-          item.quality += 1
-          if item.name == BACKSTAGE_PASS
-            backstage_passes_rules(item)
-          end
-        end
-      end
-      if item.name != SULFURAS
-        item.sell_in -= 1
-      end
-      if item.sell_in < 0
-        if item.name != AGED_BRIE
-          if item.name != BACKSTAGE_PASS
-            if item.quality > 0
-              if item.name != SULFURAS
-                item.quality -= 1
-              end
-            end
-          else
-            item.quality = item.quality - item.quality
+        if item.name != AGED_BRIE && item.name != BACKSTAGE_PASS
+          if item.quality > 0
+            item.quality -= 1
           end
         else
           if item.quality < MAXIMUM_ITEM_QUALITY
             item.quality += 1
+            if item.name == BACKSTAGE_PASS
+              backstage_passes_rules(item)
+            end
+          end
+        end
+        item.sell_in -= 1
+        if item.sell_in < 0
+          if item.name != AGED_BRIE
+            if item.name != BACKSTAGE_PASS
+              if item.quality > 0
+                item.quality -= 1
+              end
+            else
+              item.quality = item.quality - item.quality
+            end
+          else
+            if item.quality < MAXIMUM_ITEM_QUALITY
+              item.quality += 1
+            end
           end
         end
       end
