@@ -8,6 +8,8 @@ class ItemUpdater
       BackstagePassesUpdater.new
     when 'Aged Brie'
       AgedBrieUpdater.new
+    when 'Conjured Mana Cake'
+      ConjuredItemUpdater.new
     else
       ItemUpdater.new
     end
@@ -72,6 +74,15 @@ class AgedBrieUpdater < ItemUpdater
 
   def handle_expiry(item)
     increment_quality(item)
+  end
+end
+
+class ConjuredItemUpdater < ItemUpdater
+  def update_item_quality(item)
+    2.times { decrement_quality(item) }
+  end
+  def handle_expiry(item)
+    2.times { decrement_quality(item) }
   end
 end
 
