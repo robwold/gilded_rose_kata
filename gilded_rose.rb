@@ -3,6 +3,8 @@ AGED_BRIE = 'Aged Brie'
 BACKSTAGE_PASS = 'Backstage passes to a TAFKAL80ETC concert'
 
 
+MAXIMUM_ITEM_QUALITY = 50
+
 
 def update_quality(items)
   items.each do |item|
@@ -13,16 +15,16 @@ def update_quality(items)
         end
       end
     else
-      if item.quality < 50
+      if item.quality < MAXIMUM_ITEM_QUALITY
         item.quality += 1
         if item.name == BACKSTAGE_PASS
           if item.sell_in < 11
-            if item.quality < 50
+            if item.quality < MAXIMUM_ITEM_QUALITY
               item.quality += 1
             end
           end
           if item.sell_in < 6
-            if item.quality < 50
+            if item.quality < MAXIMUM_ITEM_QUALITY
               item.quality += 1
             end
           end
@@ -44,7 +46,7 @@ def update_quality(items)
           item.quality = item.quality - item.quality
         end
       else
-        if item.quality < 50
+        if item.quality < MAXIMUM_ITEM_QUALITY
           item.quality += 1
         end
       end
