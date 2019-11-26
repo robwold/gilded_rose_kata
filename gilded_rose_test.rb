@@ -8,7 +8,7 @@ class GildedRoseTest < MiniTest::Test
 
   def make_and_update(name:, sell_in:, quality:)
     item = Item.new(name, sell_in, quality)
-    update_quality [item]
+    GildedRose.new.update_quality [item]
     item
   end
 
