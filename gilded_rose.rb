@@ -1,14 +1,20 @@
 class ItemUpdater
+  SULFURAS = 'Sulfuras, Hand of Ragnaros'
+  BACKSTAGE_PASSES = /Backstage passes/
+  AGED_BRIE = 'Aged Brie'
+  CONJURED = /Conjured/
+
+  MAX_QUALITY = 50
 
   def self.updater_for(item)
     case item.name
-    when 'Sulfuras, Hand of Ragnaros'
+    when SULFURAS
       SulfurasUpdater.new
-    when 'Backstage passes to a TAFKAL80ETC concert'
+    when BACKSTAGE_PASSES
       BackstagePassesUpdater.new
-    when 'Aged Brie'
+    when AGED_BRIE
       AgedBrieUpdater.new
-    when 'Conjured Mana Cake'
+    when CONJURED
       ConjuredItemUpdater.new
     else
       ItemUpdater.new
@@ -25,7 +31,7 @@ class ItemUpdater
 
   private
   def increment_quality(item)
-    if item.quality < 50
+    if item.quality < MAX_QUALITY
       item.quality += 1
     end
   end
